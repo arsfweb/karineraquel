@@ -5,11 +5,20 @@
     <!-- META TAGS & SEO                                               -->
     <!-- ============================================================ -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="theme-color" content="#E8E2D4">
     <meta name="description" content="Karine Raquel - Especialista em Depilação a Laser Lavieen, Estética Avançada e Formação Profissional em Balneário Camboriú - SC.">
     <meta name="keywords" content="depilação a laser, laser lavieen, estética, balneário camboriú, karine raquel, formação profissional">
     <meta name="author" content="Karine Raquel">
+    
+    <!-- APP-LIKE META TAGS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Karine Raquel">
+    <meta name="application-name" content="Karine Raquel">
+    <meta name="format-detection" content="telephone=no">
+    
     <meta property="og:title" content="Karine Raquel | Depilação a Laser • Estética • Formação Profissional">
     <meta property="og:description" content="Tecnologia Laser Lavieen - Rejuvenescimento e cuidado avançado da pele em Balneário Camboriú.">
     <meta property="og:type" content="website">
@@ -82,11 +91,13 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         html {
             scroll-behavior: smooth;
             -webkit-text-size-adjust: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -97,13 +108,15 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
         }
 
         /* ========================================================== */
         /* SCROLLBAR CUSTOMIZADA                                       */
         /* ========================================================== */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -134,7 +147,7 @@
         /* GLASSMORPHISM                                               */
         /* ========================================================== */
         .glass {
-            background: rgba(243, 238, 229, 0.65);
+            background: rgba(243, 238, 229, 0.85);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border: 1px solid rgba(189, 182, 170, 0.4);
@@ -210,8 +223,9 @@
         }
 
         .header-main.scrolled {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+            box-shadow: 0 4px 20px rgba(5, 5, 5, 0.08);
         }
 
         /* ========================================================== */
@@ -268,6 +282,10 @@
             box-shadow: 0 10px 30px rgba(5, 5, 5, 0.2);
         }
 
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
         /* ========================================================== */
         /* CARDS DE SERVIÇO                                            */
         /* ========================================================== */
@@ -308,6 +326,7 @@
             border-radius: 1rem;
             user-select: none;
             cursor: ew-resize;
+            touch-action: none;
         }
 
         .before-after-container img {
@@ -402,8 +421,8 @@
         /* ========================================================== */
         .whatsapp-float {
             position: fixed;
-            bottom: 2rem;
-            right: 2rem;
+            bottom: 6rem;
+            right: 1.5rem;
             width: 60px;
             height: 60px;
             background: #25D366;
@@ -440,6 +459,7 @@
             z-index: 998;
             transform: translateY(100%);
             transition: transform 0.4s ease;
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         .bottom-nav.visible {
@@ -484,6 +504,7 @@
         .loader-overlay.hidden {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
         }
 
         .loader-logo {
@@ -525,6 +546,10 @@
                 width: 54px;
                 height: 54px;
                 font-size: 1.6rem;
+            }
+            
+            .divider-line {
+                width: 30px;
             }
         }
 
@@ -593,6 +618,71 @@
         .modal-overlay.active .modal-content {
             transform: scale(1);
         }
+
+        /* ========================================================== */
+        /* LOGO DESTAQUE                                               */
+        /* ========================================================== */
+        .logo-header {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            transition: all 0.4s ease;
+            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        .logo-header:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-loader {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.15));
+        }
+
+        @media (min-width: 768px) {
+            .logo-header {
+                height: 90px;
+            }
+            
+            .logo-loader {
+                width: 220px;
+                height: 220px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .logo-header {
+                height: 100px;
+            }
+        }
+
+        /* ========================================================== */
+        /* MAPA PLACEHOLDER                                            */
+        /* ========================================================== */
+        .map-placeholder {
+            background: linear-gradient(135deg, #F3EEE5 0%, #E8E2D4 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* ========================================================== */
+        /* SAFE AREA (Notch/Home Indicator)                            */
+        /* ========================================================== */
+        @supports (padding: max(0px)) {
+            .header-main {
+                padding-top: max(1rem, env(safe-area-inset-top));
+            }
+            
+            .bottom-nav {
+                padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+            }
+        }
     </style>
 </head>
 
@@ -603,13 +693,13 @@
     <!-- ============================================================ -->
     <div class="loader-overlay" id="loader">
         <div class="text-center loader-logo">
-            <img src="logo.png" alt="Karine Raquel" class="w-24 h-24 mx-auto mb-4 object-contain"
+            <img src="https://i.ibb.co/Fb5JhnH1/logo.png" alt="Karine Raquel" class="logo-loader mx-auto mb-6"
                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-            <h2 class="font-serif text-3xl text-text-primary hidden">Karine Raquel</h2>
-            <div class="mt-6 flex justify-center gap-1">
-                <span class="w-2 h-2 bg-text-primary rounded-full animate-bounce" style="animation-delay: 0s;"></span>
-                <span class="w-2 h-2 bg-text-primary rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
-                <span class="w-2 h-2 bg-text-primary rounded-full animate-bounce" style="animation-delay: 0.4s;"></span>
+            <h2 class="font-serif text-4xl md:text-5xl text-text-primary hidden">Karine Raquel</h2>
+            <div class="mt-8 flex justify-center gap-2">
+                <span class="w-3 h-3 bg-text-primary rounded-full animate-bounce" style="animation-delay: 0s;"></span>
+                <span class="w-3 h-3 bg-text-primary rounded-full animate-bounce" style="animation-delay: 0.2s;"></span>
+                <span class="w-3 h-3 bg-text-primary rounded-full animate-bounce" style="animation-delay: 0.4s;"></span>
             </div>
         </div>
     </div>
@@ -627,11 +717,11 @@
                 <a href="#resultados" class="text-sm font-medium tracking-wide hover:opacity-60 transition-opacity">Resultados</a>
             </nav>
 
-            <!-- Logo Centralizada -->
+            <!-- Logo Centralizada - MAIOR E MAIS DESTACADA -->
             <a href="#home" class="flex flex-col items-center">
-                <img src="logo.png" alt="Karine Raquel - Logo" class="h-14 md:h-16 w-auto object-contain transition-transform hover:scale-105"
-                     onerror="this.outerHTML='<div class=\'font-serif text-2xl md:text-3xl font-semibold tracking-wider\'>Karine Raquel</div>';">
-                <span class="hidden md:block text-[0.6rem] tracking-[0.3em] text-text-secondary mt-1 uppercase">Estética & Laser</span>
+                <img src="https://i.ibb.co/Fb5JhnH1/logo.png" alt="Karine Raquel - Logo" class="logo-header"
+                     onerror="this.outerHTML='<div class=\'font-serif text-3xl md:text-4xl font-semibold tracking-wider\'>Karine Raquel</div>';">
+                <span class="hidden md:block text-[0.65rem] tracking-[0.3em] text-text-secondary mt-1 uppercase font-medium">Estética & Laser</span>
             </a>
 
             <!-- Menu Lateral Direito (Desktop) -->
@@ -673,7 +763,7 @@
     <!-- ============================================================ -->
     <!-- INÍCIO DA SEÇÃO HERO                                          -->
     <!-- ============================================================ -->
-    <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-4 overflow-hidden hero-pattern">
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-32 pb-16 px-4 overflow-hidden hero-pattern">
 
         <!-- Elementos Decorativos -->
         <div class="absolute top-20 left-10 w-64 h-64 rounded-full bg-border-detail/20 blur-3xl animate-float"></div>
@@ -704,12 +794,12 @@
             <div class="reveal flex flex-col sm:flex-row gap-4 justify-center items-center" style="transition-delay: 0.4s;">
                 <a href="https://wa.me/5547992747837?text=Ol%C3%A1%20Karine%2C%20gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o."
                    target="_blank"
-                   class="btn-primary bg-text-primary text-bg-card px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase flex items-center gap-3">
+                   class="btn-primary bg-text-primary text-bg-card px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase flex items-center gap-3 w-full sm:w-auto justify-center">
                     <i class="fa-brands fa-whatsapp text-lg"></i>
                     Agendar Avaliação
                 </a>
                 <a href="#servicos"
-                   class="group px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase border border-text-primary/30 hover:border-text-primary transition-all flex items-center gap-3">
+                   class="group px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase border border-text-primary/30 hover:border-text-primary transition-all flex items-center gap-3 w-full sm:w-auto justify-center">
                     Conhecer Serviços
                     <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
                 </a>
@@ -788,8 +878,7 @@
                 <div class="reveal-left">
                     <div class="relative">
                         <div class="img-zoom rounded-2xl overflow-hidden aspect-[4/5] bg-bg-card border border-border-detail/40">
-                            <!-- TROCAR: caminho da foto profissional -->
-                            <img src="img/perfil.jpg" alt="Karine Raquel - Especialista em Estética"
+                            <img src="https://i.ibb.co/gLCKdgNS/perfil.jpg" alt="Karine Raquel - Especialista em Estética"
                                  class="w-full h-full object-cover"
                                  onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center bg-bg-card text-text-secondary\'><i class=\'fa-solid fa-user-nurse text-6xl opacity-30\'></i></div>';">
                         </div>
@@ -1016,8 +1105,8 @@
                 <!-- ANTES E DEPOIS 1 -->
                 <div class="reveal-left">
                     <div class="before-after-container aspect-[4/5] bg-bg-card border border-border-detail/40" data-ba>
-                        <img src="img/antes1.jpg" alt="Antes" class="after-image">
-                        <img src="img/depois1.jpg" alt="Depois" class="before-image">
+                        <img src="https://i.ibb.co/0RZF8KNc/antes1.jpg" alt="Antes" class="after-image">
+                        <img src="https://i.ibb.co/yzv3qkf/depois1.jpg" alt="Depois" class="before-image">
                         <div class="slider-handle">
                             <div class="slider-button">
                                 <i class="fa-solid fa-arrows-left-right text-xs"></i>
@@ -1035,8 +1124,8 @@
                 <!-- ANTES E DEPOIS 2 -->
                 <div class="reveal-right">
                     <div class="before-after-container aspect-[4/5] bg-bg-card border border-border-detail/40" data-ba>
-                        <img src="img/antes2.jpg" alt="Antes" class="after-image">
-                        <img src="img/depois2.jpg" alt="Depois" class="before-image">
+                        <img src="https://i.ibb.co/r1sNQR5/antes2.jpg" alt="Antes" class="after-image">
+                        <img src="https://i.ibb.co/s9Ssx60S/depois2.jpg" alt="Depois" class="before-image">
                         <div class="slider-handle">
                             <div class="slider-button">
                                 <i class="fa-solid fa-arrows-left-right text-xs"></i>
@@ -1054,8 +1143,8 @@
                 <!-- ANTES E DEPOIS 3 -->
                 <div class="reveal-left">
                     <div class="before-after-container aspect-[4/5] bg-bg-card border border-border-detail/40" data-ba>
-                        <img src="img/antes3.jpg" alt="Antes" class="after-image">
-                        <img src="img/depois3.jpg" alt="Depois" class="before-image">
+                        <img src="https://i.ibb.co/MkVJBD1K/antes3.jpg" alt="Antes" class="after-image">
+                        <img src="https://i.ibb.co/ZpYH1q2t/depois3.jpg" alt="Depois" class="before-image">
                         <div class="slider-handle">
                             <div class="slider-button">
                                 <i class="fa-solid fa-arrows-left-right text-xs"></i>
@@ -1073,8 +1162,8 @@
                 <!-- ANTES E DEPOIS 4 -->
                 <div class="reveal-right">
                     <div class="before-after-container aspect-[4/5] bg-bg-card border border-border-detail/40" data-ba>
-                        <img src="img/antes4.jpg" alt="Antes" class="after-image">
-                        <img src="img/depois4.jpg" alt="Depois" class="before-image">
+                        <img src="https://i.ibb.co/1G92P45S/antes4.jpg" alt="Antes" class="after-image">
+                        <img src="https://i.ibb.co/sdzGQQrv/depois4.jpg" alt="Depois" class="before-image">
                         <div class="slider-handle">
                             <div class="slider-button">
                                 <i class="fa-solid fa-arrows-left-right text-xs"></i>
@@ -1097,22 +1186,17 @@
                     <em>Nosso espaço</em>
                 </h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-                    <!-- TROCAR: caminhos das fotos da clínica -->
                     <div class="img-zoom reveal-scale aspect-square rounded-xl overflow-hidden bg-bg-card border border-border-detail/30">
-                        <img src="img/clínica1.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover"
-                             onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-text-secondary/40\'><i class=\'fa-solid fa-image text-3xl\'></i></div>';">
+                        <img src="https://i.ibb.co/JRJDSVKP/cl-nica1.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover">
                     </div>
                     <div class="img-zoom reveal-scale aspect-square rounded-xl overflow-hidden bg-bg-card border border-border-detail/30" style="transition-delay: 0.1s;">
-                        <img src="img/clínica2.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover"
-                             onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-text-secondary/40\'><i class=\'fa-solid fa-image text-3xl\'></i></div>';">
+                        <img src="https://i.ibb.co/V0VyCdht/cl-nica2.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover">
                     </div>
                     <div class="img-zoom reveal-scale aspect-square rounded-xl overflow-hidden bg-bg-card border border-border-detail/30" style="transition-delay: 0.2s;">
-                        <img src="img/clínica3.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover"
-                             onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-text-secondary/40\'><i class=\'fa-solid fa-image text-3xl\'></i></div>';">
+                        <img src="https://i.ibb.co/nNt62hgC/cl-nica3.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover">
                     </div>
                     <div class="img-zoom reveal-scale aspect-square rounded-xl overflow-hidden bg-bg-card border border-border-detail/30" style="transition-delay: 0.3s;">
-                        <img src="img/clínica4.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover"
-                             onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex items-center justify-center text-text-secondary/40\'><i class=\'fa-solid fa-image text-3xl\'></i></div>';">
+                        <img src="https://i.ibb.co/LXSh9xn1/cl-nica4.jpg" alt="Clínica Karine Raquel" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
@@ -1321,19 +1405,23 @@
 
                 </div>
 
-                <!-- Mapa -->
+                <!-- Mapa - PLACEHOLDER (evita erro de file://) -->
                 <div class="reveal-right">
-                    <div class="rounded-2xl overflow-hidden border border-border-detail/40 h-full min-h-[500px] bg-bg-card">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3539.5!2d-48.635!3d-26.99!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zRnJhbmNpc2NvIE1hbm9lbCBkZSBTb3V6YSwgMTUwIC0gQmFsbmVhcsOhcmlvIENhbWJvcml1IC0gU0M!5e0!3m2!1spt-BR!2sbr!4v1700000000000"
-                            width="100%"
-                            height="100%"
-                            style="border:0; min-height: 500px;"
-                            allowfullscreen=""
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Localização Clínica Karine Raquel">
-                        </iframe>
+                    <div class="rounded-2xl overflow-hidden border border-border-detail/40 h-full min-h-[500px] bg-bg-card map-placeholder">
+                        <div class="text-center">
+                            <i class="fa-solid fa-map-location-dot text-6xl text-border-detail mb-6"></i>
+                            <h3 class="font-serif text-2xl font-semibold mb-3">Nossa Localização</h3>
+                            <p class="text-text-secondary mb-6 max-w-sm">
+                                R. Francisco Manoel de Souza, 150<br>
+                                Balneário Camboriú - SC
+                            </p>
+                            <a href="https://maps.google.com/?q=R.+Francisco+Manoel+de+Souza,+150+Balneário+Camboriú+SC" 
+                               target="_blank" 
+                               class="btn-primary inline-flex items-center gap-3 bg-text-primary text-bg-card px-8 py-4 rounded-full text-sm font-medium tracking-wider uppercase">
+                                <i class="fa-solid fa-map"></i>
+                                Ver no Google Maps
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -1382,7 +1470,7 @@
 
                 <!-- Coluna 1: Marca -->
                 <div class="md:col-span-2">
-                    <img src="logo.png" alt="Karine Raquel" class="h-14 w-auto mb-4 object-contain"
+                    <img src="https://i.ibb.co/Fb5JhnH1/logo.png" alt="Karine Raquel" class="h-16 w-auto mb-4 object-contain"
                          onerror="this.outerHTML='<div class=\'font-serif text-2xl font-semibold tracking-wider mb-4\'>Karine Raquel</div>';">
                     <p class="text-sm text-text-secondary max-w-sm leading-relaxed">
                         Especialista em Depilação a Laser, Estética Avançada e Formação Profissional. Tecnologia Laser Lavieen em Balneário Camboriú.
@@ -1490,7 +1578,7 @@
         window.addEventListener('load', () => {
             setTimeout(() => {
                 document.getElementById('loader').classList.add('hidden');
-            }, 800);
+            }, 1000);
         });
 
         /* ========================================================== */
@@ -1684,7 +1772,7 @@
                 const target = document.querySelector(targetId);
                 if (target) {
                     e.preventDefault();
-                    const offset = 80;
+                    const offset = 100;
                     const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
                     window.scrollTo({
                         top: targetPosition,
@@ -1693,32 +1781,6 @@
                 }
             });
         });
-
-        /* ========================================================== */
-        /* CONTADOR ANIMADO (Estatísticas)                             */
-        /* ========================================================== */
-        const counters = document.querySelectorAll('[data-count]');
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const target = parseInt(entry.target.getAttribute('data-count'));
-                    let current = 0;
-                    const increment = target / 50;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= target) {
-                            entry.target.textContent = target;
-                            clearInterval(timer);
-                        } else {
-                            entry.target.textContent = Math.ceil(current);
-                        }
-                    }, 30);
-                    counterObserver.unobserve(entry.target);
-                }
-            });
-        });
-
-        counters.forEach(counter => counterObserver.observe(counter));
 
         /* ========================================================== */
         /* PREVENÇÃO DE ERROS DE IMAGEM                                */
@@ -1730,15 +1792,6 @@
                 }
             });
         });
-
-        /* ========================================================== */
-        /* PERFORMANCE - Lazy loading nativo                           */
-        /* ========================================================== */
-        if ('loading' in HTMLImageElement.prototype) {
-            document.querySelectorAll('img[data-src]').forEach(img => {
-                img.src = img.dataset.src;
-            });
-        }
 
         /* ========================================================== */
         /* CONSOLE BRANDING                                            */
